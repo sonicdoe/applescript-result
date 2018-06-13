@@ -14,8 +14,12 @@
   "license": "ISC",
   "repository": "sonicdoe/applescript-result",
   "author": "Jakob Krigovsky <jakob@krigovsky.com>",
-  "files": [],
+  "files": [
+    "index.js",
+    "parser.js"
+  ],
   "scripts": {
+    "prepare": "jison grammar.jison --outfile parser.js",
     "test": "standard && ava"
   },
   "devDependencies": {
