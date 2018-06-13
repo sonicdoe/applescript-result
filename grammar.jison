@@ -7,6 +7,8 @@
 "true" return 'TRUE'
 "false" return 'FALSE'
 
+"-"?\d+ return 'INTEGER'
+
 /lex
 
 %%
@@ -16,6 +18,8 @@ Result
     { return null }
   | Boolean
     { return $1 }
+  | Integer
+    { return $1 }
   ;
 
 Boolean
@@ -23,4 +27,9 @@ Boolean
     { $$ = true }
   | FALSE
     { $$ = false }
+  ;
+
+Integer
+  : INTEGER
+    { $$ = parseInt(yytext) }
   ;
