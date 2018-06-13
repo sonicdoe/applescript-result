@@ -7,6 +7,7 @@
 "true" return 'TRUE'
 "false" return 'FALSE'
 
+"-"?\d+"."\d+("E"[+-]\d+)? return 'REAL'
 "-"?\d+ return 'INTEGER'
 
 /lex
@@ -20,6 +21,8 @@ Result
     { return $1 }
   | Integer
     { return $1 }
+  | Real
+    { return $1 }
   ;
 
 Boolean
@@ -32,4 +35,9 @@ Boolean
 Integer
   : INTEGER
     { $$ = parseInt(yytext) }
+  ;
+
+Real
+  : REAL
+    { $$ = parseFloat(yytext) }
   ;
