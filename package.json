@@ -1,6 +1,6 @@
 {
   "name": "applescript-result",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Convert an AppleScript result to its equivalent JavaScript representation",
   "keywords": [
     "applescript",
