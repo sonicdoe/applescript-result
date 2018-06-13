@@ -12,6 +12,10 @@
 
 \"("\\"[\\"trn]|[^"])*\" yytext = yytext.slice(1, -1); return 'TEXT'
 
+"{" return '{'
+"}" return '}'
+"," return ','
+
 /lex
 
 %%
@@ -19,14 +23,16 @@
 Result
   : %empty
     { return null }
-  | Boolean
+  | Value
     { return $1 }
+  ;
+
+Value
+  : Boolean
   | Integer
-    { return $1 }
   | Real
-    { return $1 }
   | Text
-    { return $1 }
+  | List
   ;
 
 Boolean
@@ -56,4 +62,18 @@ Text
         .replace(/\\r/g, '\r')
         .replace(/\\n/g, '\n')
     }
+  ;
+
+List
+  : '{' '}'
+    { $$ = [] }
+  | '{' Items '}'
+    { $$ = $Items }
+  ;
+
+Items
+  : Value
+    { $$ = [$Value] }
+  | Items ',' Value
+    { $Items.push($Value); $$ = $Items }
   ;
