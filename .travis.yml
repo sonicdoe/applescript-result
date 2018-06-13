@@ -5,3 +5,21 @@ node_js:
   - "10"
   - "8"
   - "6"
+env:
+  - APPLE_LOCALE="en_US"
+  - APPLE_LOCALE="de_AT"
+  - APPLE_LOCALE="th_TH"
+matrix:
+  # Run locales other than en_US only on the latest Node.js version to take
+  # some load off Travis CI.
+  exclude:
+    - node_js: "8"
+      env: APPLE_LOCALE="de_AT"
+    - node_js: "6"
+      env: APPLE_LOCALE="de_AT"
+    - node_js: "8"
+      env: APPLE_LOCALE="th_TH"
+    - node_js: "6"
+      env: APPLE_LOCALE="th_TH"
+before_script:
+  - defaults write NSGlobalDomain AppleLocale -string $APPLE_LOCALE
