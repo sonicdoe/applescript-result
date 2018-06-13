@@ -16,9 +16,10 @@
   "author": "Jakob Krigovsky <jakob@krigovsky.com>",
   "files": [],
   "scripts": {
-    "test": "standard"
+    "test": "standard && ava"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
     "standard": "^11.0.1"
   },
   "engines": {
