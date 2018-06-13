@@ -16,6 +16,9 @@
 "}" return '}'
 "," return ','
 
+\w+ return 'LABEL'
+":" return ':'
+
 /lex
 
 %%
@@ -33,6 +36,7 @@ Value
   | Real
   | Text
   | List
+  | Record
   ;
 
 Boolean
@@ -76,4 +80,21 @@ Items
     { $$ = [$Value] }
   | Items ',' Value
     { $Items.push($Value); $$ = $Items }
+  ;
+
+Record
+  : '{' Properties '}'
+    { $$ = $Properties }
+  ;
+
+Properties
+  : Property
+    { $$ = { [$Property.label]: $Property.value } }
+  | Properties ',' Property
+    { $Properties[$Property.label] = $Property.value; $$ = $Properties }
+  ;
+
+Property
+  : LABEL ':' Value
+    { $$ = { label: $LABEL, value: $Value } }
   ;
