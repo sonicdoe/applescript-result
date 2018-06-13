@@ -1,0 +1,20 @@
+{
+  "name": "applescript-result",
+  "version": "0.0.0",
+  "description": "Convert an AppleScript result to its equivalent JavaScript representation",
+  "keywords": [
+    "applescript",
+    "osascript",
+    "result",
+    "parse",
+    "macos",
+    "mac",
+    "osx"
+  ],
+  "repository": "sonicdoe/applescript-result",
+  "author": "Jakob Krigovsky <jakob@krigovsky.com>",
+  "files": [],
+  "engines": {
+    "node": ">=6"
+  }
+}
