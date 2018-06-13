@@ -10,6 +10,8 @@
 "-"?\d+"."\d+("E"[+-]\d+)? return 'REAL'
 "-"?\d+ return 'INTEGER'
 
+\"("\\"[\\"trn]|[^"])*\" yytext = yytext.slice(1, -1); return 'TEXT'
+
 /lex
 
 %%
@@ -22,6 +24,8 @@ Result
   | Integer
     { return $1 }
   | Real
+    { return $1 }
+  | Text
     { return $1 }
   ;
 
@@ -40,4 +44,16 @@ Integer
 Real
   : REAL
     { $$ = parseFloat(yytext) }
+  ;
+
+Text
+  : TEXT
+    {
+      $$ = yytext
+        .replace(/\\\\/g, '\\')
+        .replace(/\\"/g, '"')
+        .replace(/\\t/g, '\t')
+        .replace(/\\r/g, '\r')
+        .replace(/\\n/g, '\n')
+    }
   ;
