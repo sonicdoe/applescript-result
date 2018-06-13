@@ -19,8 +19,9 @@
     "parser.js"
   ],
   "scripts": {
-    "prepare": "jison grammar.jison --outfile parser.js",
-    "test": "standard && ava"
+    "jison": "jison grammar.jison --outfile parser.js",
+    "prepare": "npm run jison",
+    "test": "standard && npm run jison && ava"
   },
   "devDependencies": {
     "ava": "^0.25.0",

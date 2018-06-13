@@ -1,9 +1,9 @@
 import execa from 'execa'
-import parser from './parser'
+import applescriptResult from '../..'
 
 export default async script => {
   const stdout = await exec(script)
-  const result = parser.parse(stdout)
+  const result = applescriptResult(stdout)
 
   return result
 }
