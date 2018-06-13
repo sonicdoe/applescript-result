@@ -11,6 +11,7 @@
     "mac",
     "osx"
   ],
+  "license": "ISC",
   "repository": "sonicdoe/applescript-result",
   "author": "Jakob Krigovsky <jakob@krigovsky.com>",
   "files": [],
